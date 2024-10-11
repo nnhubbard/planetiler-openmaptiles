@@ -5,6 +5,7 @@ import com.onthegomap.planetiler.stats.Stats;
 import com.onthegomap.planetiler.util.Translations;
 import java.util.List;
 import org.openmaptiles.Layer;
+import org.openmaptiles.addons.Power;
 
 /**
  * Registry of extra custom layers that you can add to the openmaptiles schema.
