@@ -281,7 +281,7 @@ public class Boundary implements
         int minzoom =
           (maritime && minAdminLevel == 2) ? 4 :
             minAdminLevel <= 4 ? 5 :
-            minAdminLevel <= 6 ? 9 :
+            minAdminLevel <= 6 ? 6 :
             minAdminLevel <= 8 ? 11 : 12;
         if (onlyOsmBoundaries && minAdminLevel <= 4) {
           minzoom = minAdminLevel == 2 ? (maritime ? 4 : 0) : 1;
