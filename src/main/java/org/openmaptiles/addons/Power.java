@@ -16,11 +16,11 @@ public class Power implements Layer, OpenMapTilesProfile.OsmAllProcessor {
 
   @Override
   public void processAllOsm(SourceFeature feature, FeatureCollector features) {
-    if (feature.canBeLine() && feature.hasTag("power", "line")) {
+    if (feature.canBeLine() && feature.hasTag("power", "line", "minor_line")) {
       features.line("power")
         .setBufferPixels(4)
         .setMinZoom(12)
-        .setAttr("class", "line");
+        .setAttr("class", feature.getTag("power"));
     } else if (feature.canBePolygon() && feature.hasTag("power", "substation", "plant", "generator", "switchgear")) {
       features.polygon("power")
         .setBufferPixels(4)
