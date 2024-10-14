@@ -87,6 +87,7 @@ public class Place implements
   Tables.OsmCountryPoint.Handler,
   Tables.OsmStatePoint.Handler,
   Tables.OsmIslandPoint.Handler,
+  Tables.OsmCountyPoint.Handler,
   Tables.OsmIslandPolygon.Handler,
   Tables.OsmCityPoint.Handler,
   Tables.OsmBoundaryPolygon.Handler,
@@ -308,6 +309,16 @@ public class Place implements
       .setAttr(Fields.CLASS, "island")
       .setAttr(Fields.RANK, 7)
       .setMinZoom(12);
+  }
+
+  @Override
+  public void process(Tables.OsmCountyPoint element, FeatureCollector features) {
+    if (!nullOrEmpty(element.name())) {
+      features.point(LAYER_NAME).setBufferPixels(BUFFER_SIZE)
+        .putAttrs(OmtLanguageUtils.getNames(element.source().tags(), translations))
+        .setAttr(Fields.CLASS, FieldValues.CLASS_COUNTY)
+        .setMinZoom(6);
+    }
   }
 
   @Override
