@@ -112,7 +112,8 @@ public class Transportation implements
     FieldValues.SUBCLASS_RAIL,
     FieldValues.SUBCLASS_NARROW_GAUGE,
     FieldValues.SUBCLASS_PRESERVED,
-    FieldValues.SUBCLASS_FUNICULAR
+    FieldValues.SUBCLASS_FUNICULAR,
+    FieldValues.SUBCLASS_DISUSED
   );
   private static final Set<String> RAILWAY_TRANSIT_VALUES = Set.of(
     FieldValues.SUBCLASS_SUBWAY,
