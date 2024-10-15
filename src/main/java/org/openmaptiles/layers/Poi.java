@@ -282,6 +282,15 @@ public class Poi implements
       }
     }
 
+    if (element.source().hasTag("waterway", "waterfall") && element.source().hasTag("height")) {
+
+      var height = element.source().getTag("height");
+      if (height != null) {
+        output.setAttr("height", height);
+      }
+
+    }
+
     // Parcel locker without name: use either brand or operator and add ref if present
     if (BRAND_OPERATOR_REF_SUBCLASSES.contains(rawSubclass) && nullOrEmpty(name)) {
       name = coalesce(nullIfEmpty(element.brand()), nullIfEmpty(element.operator()));
