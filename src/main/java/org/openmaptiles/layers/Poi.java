@@ -80,6 +80,7 @@ public class Poi implements
   OpenMapTilesSchema.Poi,
   Tables.OsmPoiPoint.Handler,
   Tables.OsmPoiPolygon.Handler,
+  Tables.OsmPoiLinestring.Handler,
   ForwardingProfile.LayerPostProcesser,
   ForwardingProfile.FinishHandler {
 
@@ -260,6 +261,13 @@ public class Poi implements
   @Override
   public void process(Tables.OsmPoiPolygon element, FeatureCollector features) {
     setupPoiFeature(element, features.centroidIfConvex(LAYER_NAME), null);
+  }
+
+  @Override
+  public void process(Tables.OsmPoiLinestring element, FeatureCollector features) {
+    if (element.source().hasTag("barrier", "city_wall") || element.source().hasTag("historic", "castle_wall")) {
+      setupPoiFeature(element, features.line(LAYER_NAME), null);
+    }
   }
 
   private <T extends Tables.WithSubclass & Tables.WithStation & Tables.WithFunicular & Tables.WithSport & Tables.WithInformation & Tables.WithReligion & Tables.WithMappingKey & Tables.WithName & Tables.WithIndoor & Tables.WithLayer & Tables.WithSource & Tables.WithOperator & Tables.WithNetwork & Tables.WithBrand & Tables.WithRef> void setupPoiFeature(
