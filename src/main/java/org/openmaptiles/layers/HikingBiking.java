@@ -136,9 +136,9 @@ public class HikingBiking implements OpenMapTilesSchema.HikingBiking, OpenMapTil
 
       try {
 
-        var length = feature.length() * GeoUtils.metersPerPixelAtEquator(0) * 256;
-        line.setAttr(Fields.LENGTH_MI, lengthFormattedText(length, true));
-        line.setAttr(Fields.LENGTH_KM, lengthFormattedText(length, false));
+        var length = GeoUtils.lengthInMeters(feature.latLonGeometry());
+        line.setAttr(Fields.LENGTH_MI, lengthFormattedText(length, false));
+        line.setAttr(Fields.LENGTH_KM, lengthFormattedText(length, true));
         line.setAttr(Fields.LENGTH_M, metersRounded(length));
 
       } catch (GeometryException e) {
@@ -155,9 +155,9 @@ public class HikingBiking implements OpenMapTilesSchema.HikingBiking, OpenMapTil
 
       try {
 
-        var length = feature.length() * GeoUtils.metersPerPixelAtEquator(0) * 256;
-        line.setAttr(Fields.LENGTH_MI, lengthFormattedText(length, true));
-        line.setAttr(Fields.LENGTH_KM, lengthFormattedText(length, false));
+        var length = GeoUtils.lengthInMeters(feature.latLonGeometry());
+        line.setAttr(Fields.LENGTH_MI, lengthFormattedText(length, false));
+        line.setAttr(Fields.LENGTH_KM, lengthFormattedText(length, true));
         line.setAttr(Fields.LENGTH_M, metersRounded(length));
         line.setBufferPixels(BUFFER_SIZE)
           .setMinZoom(14);
